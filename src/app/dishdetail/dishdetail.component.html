@@ -7,7 +7,7 @@
     fxLayoutGap.xs="0">
 
   <div fxFlex="40">
-    <md-card>
+    <md-card *ngIf = "dish">
       <md-card-header>
         <md-card-title>
           <h3>{{ dish.name | uppercase }}</h3>
@@ -24,36 +24,17 @@
     </md-card>
   </div>
 
-  <div fxFlex="40" fxLayout="column">
-   <h2>Comments</h2>
-   <md-list *ngIf = "dish">
-
-     <md-list-item>
-       <p md-line>{{dish.comments[0].comment}}</p>
-       <p md-line>{{dish.comments[0].rating}} stars</p>
-       <p md-line>-- {{dish.comments[0].author}} {{dish.comments[0].date | date}}</p>
+  <div fxFlex="40">
+    <md-list *ngIf="dish">
+     <h3>Comments</h3>
+     <md-list-item *ngFor="let comment of dish.comments">
+       <h4 md-line>{{comment.comment}}</h4>
+       <p md-line>{{comment.rating}} Stars</p>
+       <p md-line>
+         <span> -- {{comment.author}} {{comment.date | date}}</span>
+       </p>
      </md-list-item>
-     <md-list-item>
-       <p md-line>{{dish.comments[1].comment}}</p>
-       <p md-line>{{dish.comments[1].rating}} stars</p>
-       <p md-line>-- {{dish.comments[1].author}} {{dish.comments[1].date | date}}</p>
-     </md-list-item>
-     <md-list-item>
-       <p md-line>{{dish.comments[2].comment}}</p>
-       <p md-line>{{dish.comments[2].rating}} stars</p>
-       <p md-line>-- {{dish.comments[2].author}} {{dish.comments[2].date | date}}</p>
-     </md-list-item>
-     <md-list-item>
-       <p md-line>{{dish.comments[3].comment}}</p>
-       <p md-line>{{dish.comments[3].rating}} stars</p>
-       <p md-line>-- {{dish.comments[3].author}} {{dish.comments[3].date | date}}</p>
-     </md-list-item>
-     <md-list-item>
-       <p md-line>{{dish.comments[4].comment}}</p>
-       <p md-line>{{dish.comments[4].rating}} stars</p>
-       <p md-line>-- {{dish.comments[4].author}} {{dish.comments[4].date | date}}</p>
-     </md-list-item>
-   </md-list>
+     </md-list>
    </div>
 
 </div>
