@@ -64,5 +64,8 @@
               <p md-line>{{lead.description}}</p>
             </md-list-item>
           </md-list>
+          <div [hidden]="leader">
+            <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+          </div>
        </div>
 </div>
