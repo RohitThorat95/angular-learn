@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
@@ -19,7 +19,7 @@ dish: Dish;
 dishIds: number[];
 prev: number;
 next: number;
-
+errMess: string;
 commentForm: FormGroup;
 comment: Comment;
 formErrors = {
@@ -41,7 +41,8 @@ validationMessages = {
   constructor(private dishService: DishService,
               private route: ActivatedRoute,
               private location: Location,
-              private fb: FormBuilder){
+              private fb: FormBuilder,
+              @Inject('BaseURL') private BaseURL){
                  this.createForm();
                }
 
@@ -52,8 +53,8 @@ validationMessages = {
     this.route.params
       .switchMap((params: Params) => this.dishService.getDish(+params['id']))
       .subscribe(dish => { this.dish = dish;
-                           this.setPrevNext(dish.id);
-                         });
+                           this.setPrevNext(dish.id);}
+                         errMess => this.errMess = <any>errmess);
   }
 
   setPrevNext(dishId: number) {
